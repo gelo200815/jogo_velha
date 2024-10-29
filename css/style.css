@@ -6,7 +6,9 @@
 }
 
 body{
-    background: linear-gradient(90deg, rgb(174, 0, 255) 0%,  rgb(255, 153, 0) 100%);
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(90deg, rgb(174, 0, 255) 0%,  rgb(0, 255, 34) 100%);
 }
 
 .board{
@@ -76,6 +78,33 @@ body{
     content: ""; /* significa - vazio*/
     height: calc(100px * 0.15); /* 100px é o tamanho da célula, e 15% do altura da célula*/
     width: calc(100px * 0.9); /* 100px oé o tamanho da célula, e 90% da largura da célula*/
-    background: #fdbb2d;
+    background: radial-gradient(circle, rgb(0, 102, 255), black);
     position: absolute; /* esse position irá fazer com que forme o bX normal, por completo*/
+}
+
+.cell.x::before, /*before é uma perninha X*/
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+
+.cell.x::after, /*after é uma perninha X*/
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+/*circle*/
+.cell.circle::before,
+.cell.circle::after {
+    content: "";
+    height: calc(100px * 0.9);
+    width: calc(100px * 0.9);
+    background: radial-gradient(circle, red, black);
+    position: absolute;
+    border-radius: 50%; /*Irá deixar no formato de círculo*/
+}
+
+/*serve para informar que já tenha um X e um Círculo selecionado dentro da célula, não irá permitir que seja clicado com mouse*/
+.cell.x, .cell.circle {
+    cursor: not-allowed;
 }
